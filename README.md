@@ -1,0 +1,27 @@
+# Test Project for Musl build for libcryptsetup-rs
+
+Run
+
+```shell
+cargo build --release --target x86_64-unknown-linux-musl
+```
+
+and some error like the following will occur
+
+```
+   Compiling cryptsetup-bin v0.1.0 (/root/xxx/cryptsetup-bin)
+error: linking with `musl-gcc` failed: exit status: 1
+  |
+  = note: LC_ALL="C" PATH="/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin:/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-gnu/bin/self-contained:/root/.vscode-server/cli/servers/Stable-7adae6a56e34cb64d08899664b814cf620465925/server/bin/remote-cli:/root/.nvm/versions/node/v22.16.0/bin:/root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/root/xxx/go//bin:/usr/local/go/bin:/root/xxx/go//bin:/usr/local/go/bin" VSLANG="1033" "musl-gcc" "-m64" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/rcrt1.o" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crti.o" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtbeginS.o" "/tmp/rustcVjZoYp/symbols.o" "<3 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "/root/xxx/cryptsetup-bin/target/x86_64-unknown-linux-musl/release/deps/{liblibcryptsetup_rs-30cf31751b9a6d05.rlib}" "-lcryptsetup" "/root/xxx/cryptsetup-bin/target/x86_64-unknown-linux-musl/release/deps/{libonce_cell-200e872e2d0e53a2.rlib,libserde_json-578ff29d0b41c58f.rlib,libmemchr-b2fd8a114ff78e15.rlib,libitoa-819a2b35391ca2ea.rlib,libryu-7772fa966141253a.rlib,libserde-f4989efe946194f9.rlib,liblibcryptsetup_rs_sys-1670f091d53bf524.rlib}" "-lcryptsetup" "/root/xxx/cryptsetup-bin/target/x86_64-unknown-linux-musl/release/deps/{libuuid-9bb3463e34a629de.rlib,libgetrandom-04d9223734825457.rlib,libcfg_if-31fbb9461db47e42.rlib,libbitflags-8c4db38a6446d2ec.rlib,liblibc-5808fb33f99cb010.rlib,libeither-f8cbad011c53b10b.rlib}" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/{libstd-41bcb8797f6c8754.rlib,libpanic_unwind-599354479dc8220f.rlib,libobject-6379cf8b64073a3b.rlib,libmemchr-d4552f81ecfbf095.rlib,libaddr2line-79352a91697e6604.rlib,libgimli-e351c1232e320732.rlib,librustc_demangle-e26276feae192bf8.rlib,libstd_detect-9e7549f1ee54e45e.rlib,libhashbrown-c1e91bdda51c5997.rlib,librustc_std_workspace_alloc-00f870a1f255e729.rlib,libminiz_oxide-641d3b2cb8de6635.rlib,libadler-f5429ef324129bbe.rlib,libunwind-1a2d0333db10e442.rlib}" "-lunwind" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/{libcfg_if-ead832692d31f96a.rlib,liblibc-2db6ad186c98c9fa.rlib}" "-lc" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/{liballoc-7baeaec6a98409f9.rlib,librustc_std_workspace_core-9e531e87417dee58.rlib,libcore-227b2b5a5b07d41a.rlib,libcompiler_builtins-40918110fa23a9da.rlib}" "-Wl,-Bdynamic" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-nostartfiles" "-L" "//lib/x86_64-linux-gnu" "-L" "//lib/x86_64-linux-gnu" "-L" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained" "-L" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib" "-o" "/root/xxx/cryptsetup-bin/target/x86_64-unknown-linux-musl/release/deps/cryptsetup_bin-440441873ce3a967" "-Wl,--gc-sections" "-static-pie" "-Wl,-z,relro,-z,now" "-Wl,-O1" "-Wl,--strip-debug" "-nodefaultlibs" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtendS.o" "/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/self-contained/crtn.o"
+  = note: some arguments are omitted. use `--verbose` to show all linker arguments
+  = note: /usr/bin/ld: cannot find -lcryptsetup: No such file or directory
+          /usr/bin/ld: cannot find -lcryptsetup: No such file or directory
+          /usr/bin/ld: /root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/libstd-41bcb8797f6c8754.rlib(std-41bcb8797f6c8754.std.5736c2a4532953d6-cgu.0.rcgu.o): in function `std::sys::pal::unix::os::home_dir::fallback':
+          /rustc/4eb161250e340c8f48f66e2b929ef4a5bed7c181/library/std/src/sys/pal/unix/os.rs:818: warning: Using 'getpwuid_r' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
+          /usr/bin/ld: /root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/x86_64-unknown-linux-musl/lib/libstd-41bcb8797f6c8754.rlib(std-41bcb8797f6c8754.std.5736c2a4532953d6-cgu.0.rcgu.o): in function `<std::sys_common::net::LookupHost as core::convert::TryFrom<(&str,u16)>>::try_from::{{closure}}':
+          /rustc/4eb161250e340c8f48f66e2b929ef4a5bed7c181/library/std/src/sys_common/net.rs:211: warning: Using 'getaddrinfo' in statically linked applications requires at runtime the shared libraries from the glibc version used for linking
+          collect2: error: ld returned 1 exit status
+          
+
+error: could not compile `cryptsetup-bin` (bin "cryptsetup-bin") due to 1 previous error
+```
